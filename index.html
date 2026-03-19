@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Weekly Planner (local)</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Weekly Planner</h1>
+    <div id="week-progress" class="week-progress">
+      <div class="week-meta">
+        <div id="week-label">Week</div>
+        <div id="week-range" class="muted"></div>
+      </div>
+      <div class="bars">
+        <div class="bar-row"><div class="bar-label">Daily tasks</div><div class="bar"><div id="bar-day" class="bar-fill day-type" style="width:0%"></div></div><div class="bar-pct" id="pct-day">0%</div></div>
+        <div class="bar-row"><div class="bar-label">Weekly tasks</div><div class="bar"><div id="bar-week" class="bar-fill week-type" style="width:0%"></div></div><div class="bar-pct" id="pct-week">0%</div></div>
+        <div class="bar-row"><div class="bar-label">Monthly tasks</div><div class="bar"><div id="bar-month" class="bar-fill month-type" style="width:0%"></div></div><div class="bar-pct" id="pct-month">0%</div></div>
+        <div class="bar-row"><div class="bar-label">Yearly goals</div><div class="bar"><div id="bar-year" class="bar-fill year-type" style="width:0%"></div></div><div class="bar-pct" id="pct-year">0%</div></div>
+      </div>
+    </div>
+    <div class="controls">
+            <button id="btn-new" class="primary-cta">➕ New Task</button>
+      <button id="btn-export">Export (ICS)</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="calendar" class="calendar">
+      <div class="calendar-header">
+        <button id="prev-month">◀</button>
+        <div id="month-task-header" class="month-task-header"></div>
+        <h2 id="month-year">Month</h2>
+        <button id="next-month">▶</button>
+      </div>
+      <div class="calendar-weekdays">
+        <div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div>
+      </div>
+      <div class="calendar-grid" id="calendar-grid"></div>
+    </section>
+
+    <!-- Year overview removed -->
+
+    <section id="notes">
+      <h2>Pending Tasks</h2>
+      <div id="notes-list" class="notes-list"></div>
+    </section>
+
+    <aside id="sidebar">
+      <div class="sidebar-panel">
+        <div class="sidebar-header">
+          <h3>To-Do List</h3>
+        </div>
+        <div id="todo-list"></div>
+        <form id="todo-form">
+          <input id="todo-title" placeholder="New to-do" required />
+          <select id="todo-link">
+            <option value="">(no link)</option>
+          </select>
+          <button type="submit">Add</button>
+        </form>
+      </div>
+    </aside>
+  </main>
+
+  <section id="completed" class="completed-section">
+    <h2>Completed Tasks</h2>
+    <div id="completed-list" class="completed-list"></div>
+  </section>
+
+  <!-- Modal / Drawer for Task Form -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <button id="modal-close" class="close">✕</button>
+      <h2 id="modal-title">Task</h2>
+      <form id="task-form">
+        <label>Title<input id="title" required /></label>
+        <label>Type
+          <select id="type">
+            <option value="day">Day</option>
+            <option value="week">Week</option>
+            <option value="month">Month</option>
+            <option value="year">Year</option>
+          </select>
+        </label>
+        <div id="year-color-wrap" class="hidden">
+          <label>Background color
+            <select id="year-color">
+              <option value="#fde68a">Sun (yellow)</option>
+              <option value="#bfdbfe">Blue (light)</option>
+              <option value="#fbcfe8">Lilac-pink (light)</option>
+              <option value="#bbf7d0">Mint (light)</option>
+              <option value="#fef3c7">Warm (cream)</option>
+            </select>
+          </label>
+          <div id="color-preview" class="color-preview">
+            <div id="color-sample" class="color-sample"></div>
+          </div>
+        </div>
+        <div class="scope-inputs">
+          <label class="scope-input" data-scope="date">Select date<input id="due-day" type="date" /></label>
+          <input id="due-week" type="hidden" />
+          <input id="due-month" type="hidden" />
+          <input id="due-year" type="hidden" />
+        </div>
+
+        <label><input type="checkbox" id="rec-daily" /> Repeat</label>
+        <label>Details<textarea id="details"></textarea></label>
+        <button type="submit">Save</button>
+      </form>
+      <div class="modal-actions">
+        <button id="task-done" class="done-action hidden">Done</button>
+        <button id="task-delete" class="danger hidden">Delete Task</button>
+      </div>
+      <div id="task-details" class="hidden">
+        <h3>To-Dos</h3>
+        <ul id="task-todos"></ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

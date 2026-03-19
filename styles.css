@@ -1,0 +1,144 @@
+:root{--bg:#f6f7fb;--note:#fff;--accent:#3b82f6}
+*{box-sizing:border-box;font-family:Segoe UI,Roboto,system-ui}
+body{margin:0;background:var(--bg);color:#111}
+header{display:flex;justify-content:space-between;align-items:center;padding:1rem;background:#fff;border-bottom:1px solid #e6e9ef}
+.controls button{margin-left:.5rem}
+/* primary CTA: simple light-blue to match app palette */
+.primary-cta{background:#bfdbfe;color:#07304a;border:0;padding:.5rem .9rem;border-radius:8px;font-weight:700;font-size:0.98rem;box-shadow:none}
+.primary-cta:hover{filter:brightness(0.98)}
+.primary-cta:active{filter:brightness(0.95)}
+
+/* notes week blocks */
+.notes-week-block{margin-bottom:1rem;border-radius:8px;padding:0.25rem}
+.notes-week-header{font-weight:700;background:#eff6ff;padding:0.5rem 0.75rem;border-radius:6px;margin-bottom:0.5rem;color:#075985}
+.notes-week-items{display:flex;flex-direction:column;gap:0.5rem}
+.notes-week-block .note{margin:0}
+/* overall notes area: two columns */
+.notes-list{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem}
+@media (max-width:640px){
+  .notes-list{grid-template-columns:1fr}
+}
+.notes-more-block{margin-top:0.5rem}
+.notes-more-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0.6rem}
+.notes-more-grid .note{margin:0}
+@media (max-width:640px){
+  .notes-more-grid{grid-template-columns:1fr}
+}
+main{display:flex;gap:1rem;padding:1rem}
+#notes{flex:1}
+.notes-list{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem}
+.note{background:var(--note);padding:.75rem;border-radius:8px;box-shadow:0 1px 2px rgba(0,0,0,.04);cursor:pointer;min-height:72px;display:flex;flex-direction:column;justify-content:space-between}
+.note .meta{font-size:.8rem;color:#666}
+aside{width:320px;background:var(--note);padding:1rem;border-radius:8px;height:fit-content}
+/* sidebar panel styling for To-Do highlight */
+.sidebar-panel{background:linear-gradient(180deg,rgba(59,130,246,0.03),rgba(59,130,246,0.01));padding:.75rem;border-radius:10px;border:1px solid rgba(59,130,246,0.08);box-shadow:0 6px 18px rgba(58,66,86,0.04)}
+.sidebar-header{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin-bottom:.5rem}
+.theme-samplers{display:flex;gap:.35rem}
+.theme-swatch{width:18px;height:12px;border-radius:4px;border:1px solid rgba(0,0,0,0.06);display:inline-block}
+.sidebar-panel #todo-list{max-height:320px;overflow:auto;padding-right:0}
+.sidebar-panel form{margin-top:.5rem}
+#todo-list .todo{display:flex;justify-content:space-between;padding:.25rem 0;border-bottom:1px dashed #eee}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center}
+.modal.hidden{display:none}
+.modal-content{background:#fff;padding:1rem;border-radius:8px;width:480px;max-width:95%}
+.modal-content{max-height:90vh;overflow:auto}
+.close{float:right;background:transparent;border:0;font-size:1.25rem}
+form label{display:block;margin:.5rem 0}
+form input, form textarea, form select{width:100%;padding:.4rem;margin-top:.25rem}
+
+/* Calendar */
+.calendar{background:transparent;padding:0 0 1rem 0;width:960px;margin:0 auto}
+.calendar-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem}
+.calendar-header h2{margin:0;font-size:1.1rem}
+/* Month task header shown before month title */
+.month-task-header{margin-right:.5rem;padding:.25rem .5rem;border-radius:6px;font-weight:700;display:inline-block}
+/* Year overview */
+/* year overview removed */
+.calendar-weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:.25rem;font-size:.85rem;color:#444}
+.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:.5rem;margin-top:.5rem}
+.day{background:var(--note);min-height:80px;padding:.4rem;border-radius:6px;border:1px solid #f0f2f6;display:flex;flex-direction:column}
+.day .date{font-weight:600;font-size:.9rem;margin-bottom:.25rem}
+.day .events{flex:1;overflow:auto}
+.cal-event{background:var(--accent);color:#fff;padding:.15rem .3rem;border-radius:4px;font-size:.78rem;margin-bottom:.25rem;cursor:pointer}
+.cal-event.small{font-size:.72rem;padding:.1rem .25rem}
+
+/* type colors */
+.cal-event.day-type{background:#2b82ff;color:#fff}
+.cal-event.week-type{background:#a78bfa;color:#fff}
+.cal-event.month-type{background:#f59e0b;color:#000}
+.cal-event.year-type{background:#fb7185;color:#fff}
+
+/* completed styling */
+.cal-event.done{background:#e5e7eb;color:#6b7280}
+.cal-event.done.group{background:#e5e7eb;color:#6b7280}
+
+/* completed list */
+.completed-section{padding:1rem}
+.completed-list{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:.5rem;align-items:start}
+.completed-item{background:#fff;padding:.4rem 0;border-radius:6px;border:1px solid #eef0f2;color:#424242;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:56px;text-align:center;overflow:hidden}
+.completed-item .meta{font-size:.75rem;color:#666;margin-top:.25rem}
+
+/* Highlight cells covered by multi-day scopes */
+.day.covered-day{background:linear-gradient(180deg,#e6f4ff,transparent)}
+.day.covered-week{background:linear-gradient(180deg,#f3e8ff,transparent)}
+.day.covered-month{background:linear-gradient(180deg,#fff7cc,transparent)}
+.day.covered-year{background:linear-gradient(180deg,#ffeef0,transparent)}
+
+/* Week header that spans the full calendar width */
+.week-header{grid-column:1/-1;background:#f3e8ff;color:#4c1d95;padding:.35rem .5rem;border-radius:6px;font-weight:700;margin-bottom:0.25rem}
+
+/* note color marker */
+.note{position:relative}
+.note::before{content:'';position:absolute;left:0;top:0;bottom:0;width:6px;border-radius:6px 0 0 6px;background:transparent}
+
+/* Legend */
+.legend{background:transparent;padding:.5rem 0;margin-bottom:.75rem}
+.legend h4{margin:.25rem 0;font-size:.95rem}
+.legend-item{display:flex;align-items:center;gap:.5rem;font-size:.9rem;margin:.25rem 0}
+.swatch{width:18px;height:14px;border-radius:4px;display:inline-block;border:1px solid rgba(0,0,0,.06)}
+
+/* Color preview in modal */
+.color-preview{display:flex;align-items:center;gap:.5rem;margin-top:.5rem}
+.color-sample{width:48px;height:32px;border-radius:6px;border:1px solid #e6e9ef}
+
+/* Week progress in header */
+.week-progress{margin-left:1rem;display:flex;flex-direction:column;gap:.5rem;min-width:320px}
+.week-progress .week-meta{display:flex;justify-content:space-between;align-items:end}
+.week-progress #week-label{font-weight:700}
+.week-progress .muted{font-size:.85rem;color:#666}
+.week-progress .bars{display:flex;flex-direction:column;gap:.35rem}
+.bar-row{display:flex;align-items:center;gap:.5rem}
+.bar-label{width:110px;font-size:.85rem;color:#333}
+.bar{flex:1;background:#eef2ff;border-radius:8px;height:12px;overflow:hidden}
+.bar-fill{height:100%;border-radius:8px}
+.bar-pct{width:36px;text-align:right;font-size:.85rem}
+
+.bar-fill.day-type{background:#2b82ff}
+.bar-fill.week-type{background:#c084fc}
+.bar-fill.month-type{background:#facc15}
+.bar-fill.year-type{background:#fb7185}
+
+
+/* delete buttons */
+.todo{display:flex;align-items:center;gap:.5rem;padding:0.25rem 0}
+.todo label{flex:1;min-width:0}
+.todo .del-btn{background:transparent;border:0;color:#999;font-weight:700;cursor:pointer;padding:.15rem .4rem;margin-left:0}
+.todo .del-btn:hover{color:#b00}
+.modal-actions{display:flex;justify-content:flex-end;margin-top:.5rem}
+.danger{background:#ffe6e6;border:1px solid #f5c2c2;padding:.4rem .6rem;border-radius:6px;color:#7a0b0b;cursor:pointer}
+.danger.hidden{display:none}
+
+/* modal done button */
+.done-action{background:#16a34a;border:0;padding:.4rem .6rem;border-radius:6px;color:#fff;cursor:pointer;margin-right:.5rem}
+.done-action.hidden{display:none}
+
+/* undo icon button */
+.undo-btn{background:transparent;border:0;color:#16a34a;font-size:1.2rem;cursor:pointer;padding:.15rem .3rem;border-radius:6px}
+.undo-btn:hover{background:rgba(22,163,74,0.08)}
+.completed-item button{margin-top:.35rem}
+
+/* submit button full width when editing */
+.submit-fullwidth{width:100%;display:block;padding:.6rem;border-radius:6px;font-weight:700}
+
+
+
