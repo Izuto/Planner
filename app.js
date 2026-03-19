@@ -257,14 +257,14 @@ function render(){
     const label = document.createElement('label')
     label.innerHTML = `<input type="checkbox" ${td.done? 'checked':''} data-id="${td.id}" /> ${escapeHtml(td.title)}`
     const meta = document.createElement('small'); meta.textContent = td.linkedTaskId? (db.tasks.find(x=>x.id===td.linkedTaskId)||{}).title : ''
-    const del = document.createElement('button'); del.className='del-btn'; del.textContent = '✕'; del.title = 'Löschen'; del.onclick = (e)=>{ e.stopPropagation(); deleteTodo(td.id) }
+    const del = document.createElement('button'); del.className='del-btn'; del.textContent = '✕'; del.title = 'Delete'; del.onclick = (e)=>{ e.stopPropagation(); deleteTodo(td.id) }
     const cb = label.querySelector('input[type=checkbox]'); cb.onchange = ()=> toggleTodo(td.id)
     row.appendChild(label); row.appendChild(meta); row.appendChild(del)
     todoList.appendChild(row)
   }
 
   // todo link select: only show active (not done) tasks
-  todoLink.innerHTML = '<option value="">(nicht verlinken)</option>'
+  todoLink.innerHTML = '<option value="">(no link)</option>'
   const activeTasks = db.tasks.filter(t => !t.done)
   for(const t of activeTasks){
     const opt = document.createElement('option'); opt.value=t.id; opt.textContent = t.title; todoLink.appendChild(opt)
@@ -820,13 +820,6 @@ function exportAllAsICS(){
 function escapeHtml(s){ return (s+'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }
 function escapeICSText(s){ return (s||'').replace(/\n/g,'\\n').replace(/,/g,'\\,') }
 
-// initial sample data if empty
-if(!db.tasks.length && !db.todos.length){
-  const wk = dateToWeekString(new Date())
-  const t1 = createTask({title:'Prepare homepage',type:'week',details:'Layout & content',scope:'week',due:wk})
-  createTodo('Wireframe', t1.id)
-  createTodo('Write copy', t1.id)
-  createTask({title:'Define yearly plan',type:'year',details:'Goals for the year',scope:'year',due:new Date().getFullYear()})
-}
+// no initial sample data: start with a blank DB
 
 render()
