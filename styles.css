@@ -141,4 +141,30 @@ form input, form textarea, form select{width:100%;padding:.4rem;margin-top:.25re
 .submit-fullwidth{width:100%;display:block;padding:.6rem;border-radius:6px;font-weight:700}
 
 
+/* Responsive: stack everything vertically on small screens */
+@media (max-width: 700px){
+  header{flex-direction:column;align-items:flex-start;gap:.5rem}
+  main{flex-direction:column;padding:.75rem}
+  .calendar{width:100%;max-width:100%;margin:0}
+  .calendar-header{flex-direction:column;align-items:flex-start;gap:.4rem}
+  .calendar-weekdays, .calendar-grid{grid-template-columns:repeat(7,1fr);}
+  .calendar-grid{gap:0.4rem}
+  .day{min-height:64px;padding:.4rem}
+  /* Make notes and sidebar full width and stacked */
+  #notes, aside, .notes-list, .notes-more-grid, .notes-week-items{width:100%;max-width:100%}
+  .notes-list{grid-template-columns:1fr}
+  .notes-more-grid{grid-template-columns:1fr}
+  .notes-week-items{flex-direction:column}
+  aside{width:100%}
+  /* Sidebar panels flow under notes */
+  .sidebar-panel{width:100%}
+  /* Reduce paddings and font sizes slightly for mobile */
+  .modal-content{width:95%;padding:.75rem}
+  .note{padding:.6rem;min-height:64px}
+  .cal-event{font-size:.68rem;padding:.08rem .2rem}
+  .week-progress{min-width:unset;margin-left:0}
+  .completed-list{grid-template-columns:repeat(2,1fr)}
+}
+
+
 
